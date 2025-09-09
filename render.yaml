@@ -4,7 +4,7 @@ services:
     name: face-recognition-attendance
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn app:app --timeout 120
     envVars:
       - key: FLASK_ENV
         value: production
@@ -14,10 +14,12 @@ services:
           property: connectionString
       - key: ENABLE_KEEP_ALIVE
         value: true
-      - key: APP_URL
-        sync: false  # This will be manually set after deployment
       - key: PING_INTERVAL
         value: 840  # 14 minutes in seconds
+    disk:
+      name: training-images
+      mountPath: /app/Training images
+      sizeGB: 1
 
 # Database
 databases:
