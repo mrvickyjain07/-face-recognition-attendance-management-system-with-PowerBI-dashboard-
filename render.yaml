@@ -1,0 +1,27 @@
+services:
+  # Web service
+  - type: web
+    name: face-recognition-attendance
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: attendance-db
+          property: connectionString
+      - key: ENABLE_KEEP_ALIVE
+        value: true
+      - key: APP_URL
+        sync: false  # This will be manually set after deployment
+      - key: PING_INTERVAL
+        value: 840  # 14 minutes in seconds
+
+# Database
+databases:
+  - name: attendance-db
+    databaseName: attendance
+    user: attendance_user
+    plan: free

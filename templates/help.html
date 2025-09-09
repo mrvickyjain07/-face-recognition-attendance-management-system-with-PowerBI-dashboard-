@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Help - Face Recognition Attendance System</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+      :root {
+        --primary: #1a73e8;
+        --primary-light: #4285f4;
+        --primary-dark: #0d47a1;
+        --secondary: #f1f5fe;
+        --text-dark: #253858;
+        --text-light: #5f6368;
+        --white: #ffffff;
+        --card-shadow: 0 4px 20px rgba(26, 115, 232, 0.1);
+        --hover-shadow: 0 8px 26px rgba(26, 115, 232, 0.2);
+        --transition: all 0.3s ease;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8fafe;
+        color: var(--text-dark);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        color: var(--white);
+        padding: 2rem 0;
+        box-shadow: var(--card-shadow);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        flex: 1;
+      }
+
+      .help-card {
+        background: var(--white);
+        border-radius: 1rem;
+        box-shadow: var(--card-shadow);
+        padding: 2rem;
+        margin-bottom: 2rem;
+        transition: var(--transition);
+      }
+
+      .help-card:hover {
+        box-shadow: var(--hover-shadow);
+      }
+
+      .help-icon {
+        font-size: 2.5rem;
+        color: var(--primary);
+        margin-bottom: 1rem;
+      }
+
+      .help-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: var(--primary-dark);
+      }
+
+      .help-subtitle {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        color: var(--primary);
+      }
+
+      .step {
+        display: flex;
+        margin-bottom: 1rem;
+      }
+
+      .step-number {
+        background-color: var(--primary);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 1rem;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        flex: 1;
+      }
+
+      .footer {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        color: var(--white);
+        padding: 1.5rem 0;
+        margin-top: 2rem;
+      }
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        color: var(--white);
+        border: none;
+        padding: 0.75rem 2rem;
+        border-radius: 2rem;
+        font-weight: 500;
+        box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+        transition: var(--transition);
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(26, 115, 232, 0.4);
+        color: var(--white);
+      }
+
+      .nav-pills .nav-link.active {
+        background-color: var(--primary);
+      }
+
+      .nav-pills .nav-link {
+        color: var(--text-dark);
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .nav-pills .nav-link:hover:not(.active) {
+        background-color: var(--secondary);
+      }
+
+      .tab-content {
+        padding-top: 1rem;
+      }
+
+      .faq-item {
+        margin-bottom: 1.5rem;
+      }
+
+      .faq-question {
+        font-weight: 600;
+        color: var(--primary-dark);
+        margin-bottom: 0.5rem;
+      }
+
+      .faq-answer {
+        color: var(--text-light);
+      }
+
+      .troubleshooting-item {
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .troubleshooting-item:last-child {
+        border-bottom: none;
+      }
+
+      .back-to-home {
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1>Help & Documentation</h1>
+          <a href="/" class="btn btn-light"
+            ><i class="fas fa-home me-2"></i>Home</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <div class="help-card">
+            <nav class="nav flex-column nav-pills">
+              <a class="nav-link active" data-bs-toggle="tab" href="#overview"
+                >System Overview</a
+              >
+              <a class="nav-link" data-bs-toggle="tab" href="#registration"
+                >Student Registration</a
+              >
+              <a class="nav-link" data-bs-toggle="tab" href="#attendance"
+                >Taking Attendance</a
+              >
+              <a class="nav-link" data-bs-toggle="tab" href="#dashboard"
+                >Using the Dashboard</a
+              >
+              <a class="nav-link" data-bs-toggle="tab" href="#data"
+                >Viewing Records</a
+              >
+              <a class="nav-link" data-bs-toggle="tab" href="#faq">FAQs</a>
+              <a class="nav-link" data-bs-toggle="tab" href="#troubleshooting"
+                >Troubleshooting</a
+              >
+            </nav>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <div class="tab-content">
+            <!-- System Overview -->
+            <div class="tab-pane fade show active" id="overview">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-info-circle"></i>
+                </div>
+                <h2 class="help-title">System Overview</h2>
+                <p>
+                  The Face Recognition Attendance System is a modern solution
+                  for tracking attendance using facial recognition technology.
+                  It eliminates the need for manual attendance recording,
+                  offering a seamless, contactless, and accurate method.
+                </p>
+                <h3 class="help-subtitle">Key Features</h3>
+                <ul>
+                  <li>
+                    Automated facial recognition for quick attendance marking
+                  </li>
+                  <li>Real-time processing with instant feedback</li>
+                  <li>Secure database for storing attendance records</li>
+                  <li>Comprehensive analytics and reporting</li>
+                  <li>Easy registration process for new students</li>
+                  <li>User-friendly interface for administrators</li>
+                </ul>
+                <h3 class="help-subtitle">System Requirements</h3>
+                <ul>
+                  <li>Computer with webcam for facial recognition</li>
+                  <li>
+                    Modern web browser (Chrome, Firefox, Edge recommended)
+                  </li>
+                  <li>
+                    Stable internet connection for accessing the dashboard
+                  </li>
+                  <li>Adequate lighting for optimal facial recognition</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Student Registration -->
+            <div class="tab-pane fade" id="registration">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <h2 class="help-title">Student Registration</h2>
+                <p>
+                  New students must be registered in the system before their
+                  attendance can be marked. The registration process captures a
+                  facial image that will be used for recognition.
+                </p>
+                <h3 class="help-subtitle">Registration Process</h3>
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <strong>Navigate to Registration</strong>
+                    <p>
+                      Click on the "Register Now" button on the homepage or go
+                      to the Registration page from the navigation menu.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <strong>Enter Student Information</strong>
+                    <p>
+                      Fill in the required fields: Student Name and Student ID.
+                      Ensure that the information is accurate and matches the
+                      official records.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <strong>Capture Photo</strong>
+                    <p>
+                      After clicking "Take Photo & Register", a camera window
+                      will open. Ensure the student is positioned properly with
+                      good lighting. Press the SPACE key to capture the photo or
+                      ESC to cancel.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <strong>Verify Registration</strong>
+                    <p>
+                      After successful registration, a confirmation message will
+                      appear. The student is now ready to be recognized by the
+                      system.
+                    </p>
+                  </div>
+                </div>
+                <h3 class="help-subtitle">Tips for Good Photos</h3>
+                <ul>
+                  <li>
+                    Ensure there is adequate lighting on the student's face
+                  </li>
+                  <li>The student should look directly at the camera</li>
+                  <li>Avoid wearing accessories that cover the face</li>
+                  <li>Maintain a neutral expression for best recognition</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Taking Attendance -->
+            <div class="tab-pane fade" id="attendance">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-calendar-check"></i>
+                </div>
+                <h2 class="help-title">Taking Attendance</h2>
+                <p>
+                  The attendance process uses facial recognition to
+                  automatically identify and mark students present.
+                </p>
+                <h3 class="help-subtitle">Attendance Process</h3>
+                <div class="step">
+                  <div class="step-number">1</div>
+                  <div class="step-content">
+                    <strong>Start Attendance Session</strong>
+                    <p>
+                      From the homepage, click on "Start Recognition" to begin
+                      the attendance process.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">2</div>
+                  <div class="step-content">
+                    <strong>Camera Activation</strong>
+                    <p>
+                      The system will access your webcam. Ensure it has the
+                      necessary permissions in your browser.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">3</div>
+                  <div class="step-content">
+                    <strong>Face Recognition</strong>
+                    <p>
+                      Students should stand in front of the camera for
+                      recognition. When a face is recognized, the system will
+                      display the name and mark attendance automatically.
+                    </p>
+                  </div>
+                </div>
+                <div class="step">
+                  <div class="step-number">4</div>
+                  <div class="step-content">
+                    <strong>Complete Session</strong>
+                    <p>
+                      Close the browser tab or click the "End Session" button
+                      when all students have been marked.
+                    </p>
+                  </div>
+                </div>
+                <h3 class="help-subtitle">Tips for Effective Recognition</h3>
+                <ul>
+                  <li>Ensure good lighting conditions</li>
+                  <li>Position the camera at face level</li>
+                  <li>Students should look directly at the camera</li>
+                  <li>
+                    Process one student at a time for the most accurate results
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Using the Dashboard -->
+            <div class="tab-pane fade" id="dashboard">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-chart-line"></i>
+                </div>
+                <h2 class="help-title">Using the Dashboard</h2>
+                <p>
+                  The dashboard provides comprehensive analytics and insights
+                  into attendance patterns.
+                </p>
+                <h3 class="help-subtitle">Dashboard Features</h3>
+                <ul>
+                  <li>
+                    <strong>Attendance Overview:</strong> Quick stats showing
+                    total students, present students, and attendance rate
+                  </li>
+                  <li>
+                    <strong>Attendance Trend:</strong> Graph showing attendance
+                    patterns over the last 7 days
+                  </li>
+                  <li>
+                    <strong>Time Distribution:</strong> Analysis of when
+                    students typically mark their attendance
+                  </li>
+                  <li>
+                    <strong>Top Attendees:</strong> List of students with the
+                    highest attendance records
+                  </li>
+                  <li>
+                    <strong>Recent Records:</strong> Latest attendance entries
+                    for quick reference
+                  </li>
+                </ul>
+                <h3 class="help-subtitle">Navigating the Dashboard</h3>
+                <p>
+                  Access the dashboard by clicking "View Dashboard" on the
+                  homepage or selecting "Dashboard" from the navigation menu.
+                  The dashboard is interactive - you can hover over charts for
+                  detailed information or click on specific elements for further
+                  insights.
+                </p>
+              </div>
+            </div>
+
+            <!-- Viewing Records -->
+            <div class="tab-pane fade" id="data">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-database"></i>
+                </div>
+                <h2 class="help-title">Viewing Attendance Records</h2>
+                <p>
+                  The system allows you to view both daily and complete
+                  attendance records.
+                </p>
+                <h3 class="help-subtitle">Today's Attendance</h3>
+                <p>To view today's attendance records:</p>
+                <ol>
+                  <li>Click on "Today's Data" from the homepage</li>
+                  <li>
+                    The system will display all students who have been marked
+                    present today
+                  </li>
+                  <li>
+                    Records include student name, time of attendance, and date
+                  </li>
+                </ol>
+                <h3 class="help-subtitle">Complete Records</h3>
+                <p>To access the complete attendance history:</p>
+                <ol>
+                  <li>
+                    Click on "Records" from the homepage or navigation menu
+                  </li>
+                  <li>
+                    The system will display all attendance records from the
+                    database
+                  </li>
+                  <li>You can sort and filter records as needed</li>
+                </ol>
+              </div>
+            </div>
+
+            <!-- FAQs -->
+            <div class="tab-pane fade" id="faq">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-question-circle"></i>
+                </div>
+                <h2 class="help-title">Frequently Asked Questions</h2>
+                <div class="faq-item">
+                  <p class="faq-question">
+                    Q: Can the system recognize multiple faces at once?
+                  </p>
+                  <p class="faq-answer">
+                    A: Yes, the system can detect multiple faces, but for the
+                    most accurate results, it's recommended to process one
+                    student at a time.
+                  </p>
+                </div>
+                <div class="faq-item">
+                  <p class="faq-question">
+                    Q: What happens if a student changes their appearance?
+                  </p>
+                  <p class="faq-answer">
+                    A: The system can handle minor changes in appearance.
+                    However, for significant changes (like new hairstyles or
+                    glasses), it might be beneficial to re-register the student.
+                  </p>
+                </div>
+                <div class="faq-item">
+                  <p class="faq-question">
+                    Q: How secure is the facial recognition data?
+                  </p>
+                  <p class="faq-answer">
+                    A: All facial data is securely stored and only used for
+                    attendance purposes. The system doesn't share data with
+                    third parties.
+                  </p>
+                </div>
+                <div class="faq-item">
+                  <p class="faq-question">
+                    Q: Can attendance records be exported?
+                  </p>
+                  <p class="faq-answer">
+                    A: Yes, attendance records can be viewed in various formats
+                    through the dashboard and can be exported as needed.
+                  </p>
+                </div>
+                <div class="faq-item">
+                  <p class="faq-question">
+                    Q: What if a student is not recognized correctly?
+                  </p>
+                  <p class="faq-answer">
+                    A: If a student is not recognized correctly, try improving
+                    lighting conditions or positioning. If issues persist,
+                    re-registering the student with a clearer photo may help.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="tab-pane fade" id="troubleshooting">
+              <div class="help-card">
+                <div class="help-icon">
+                  <i class="fas fa-tools"></i>
+                </div>
+                <h2 class="help-title">Troubleshooting</h2>
+                <div class="troubleshooting-item">
+                  <h3 class="help-subtitle">Camera Not Working</h3>
+                  <p>
+                    <strong>Issue:</strong> System cannot access the webcam.
+                  </p>
+                  <p><strong>Solutions:</strong></p>
+                  <ul>
+                    <li>
+                      Ensure your browser has permission to access the camera
+                    </li>
+                    <li>Check if another application is using the camera</li>
+                    <li>Try refreshing the page or restarting the browser</li>
+                    <li>
+                      Verify that your webcam is properly connected and working
+                    </li>
+                  </ul>
+                </div>
+                <div class="troubleshooting-item">
+                  <h3 class="help-subtitle">Face Not Recognized</h3>
+                  <p>
+                    <strong>Issue:</strong> The system fails to recognize a
+                    registered student.
+                  </p>
+                  <p><strong>Solutions:</strong></p>
+                  <ul>
+                    <li>Improve lighting conditions</li>
+                    <li>
+                      Ensure the student is looking directly at the camera
+                    </li>
+                    <li>Remove obstacles like masks or accessories</li>
+                    <li>
+                      Re-register the student with a clearer, well-lit photo
+                    </li>
+                  </ul>
+                </div>
+                <div class="troubleshooting-item">
+                  <h3 class="help-subtitle">System Running Slowly</h3>
+                  <p>
+                    <strong>Issue:</strong> The recognition process is taking
+                    too long.
+                  </p>
+                  <p><strong>Solutions:</strong></p>
+                  <ul>
+                    <li>Close other resource-intensive applications</li>
+                    <li>Ensure your computer meets the system requirements</li>
+                    <li>
+                      Try using a different browser (Chrome or Firefox
+                      recommended)
+                    </li>
+                    <li>Refresh the page to clear any memory issues</li>
+                  </ul>
+                </div>
+                <div class="troubleshooting-item">
+                  <h3 class="help-subtitle">Database Errors</h3>
+                  <p>
+                    <strong>Issue:</strong> Cannot access or view attendance
+                    records.
+                  </p>
+                  <p><strong>Solutions:</strong></p>
+                  <ul>
+                    <li>Verify your internet connection</li>
+                    <li>Try refreshing the page</li>
+                    <li>
+                      Contact system administrator if the problem persists
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="back-to-home text-center">
+            <a href="/" class="btn btn-primary">
+              <i class="fas fa-home me-2"></i>Back to Homepage
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <div
+          class="d-flex justify-content-between align-items-center flex-column flex-md-row text-center text-md-start"
+        >
+          <p class="mb-md-0 mb-3">
+            &copy; 2025 Face Recognition Attendance System
+          </p>
+          <div>
+            <a href="/dashboard" class="btn btn-light btn-sm me-2">
+              <i class="fas fa-chart-bar me-1"></i>Dashboard
+            </a>
+            <a href="/" class="btn btn-light btn-sm">
+              <i class="fas fa-home me-1"></i>Home
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,90 +1,108 @@
-## Face Recognition based Attendance Management System (FRAMS)
-Face Recognition based Attendance Management System with a Flask web application and Power BI attendance dashboard.
+# Face Recognition Attendance Management System
 
-### Table of Contents
-- [Features](#features)
-- [Youtube Demo](#youtube-demo)
-- [Installation and Usage](#installation-and-usage)
-- [Technologies Used](#technologies-used)
-- [Methodology](#methodology)
-- [User Interface Demo](#user-interface-demo)
-- [License](#license)
+This is a Flask-based face recognition attendance management system with a PowerBI dashboard. The application uses OpenCV, dlib, and face_recognition libraries to detect and recognize faces, and stores attendance data in a database.
 
-### Features
-- Face detection and recognition
-- Attendance management
-- Generates attendance reports in a csv file
-- Secure admin login
-- Interactive user interface
-- Can detect multiple faces and mark attendance at a time 
-- Works in bright and low light conditions
-- Attendance dashboards using Power BI
+## Features
 
-### Youtube Demo
-Here's the link of the [Youtube](https://youtu.be/JKSU7lbZ3ZE) video demonstrating this project.
+- Face recognition-based attendance tracking
+- Dashboard with attendance statistics
+- Student registration through webcam
+- Daily and historical attendance reports
 
+## Deployment Guide for Render.com (Free Tier)
 
-### Installation and Usage
-1. Clone the repository:
-    ```
-    git clone https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard.git
-    ```
-2. Install the required dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
-3. Replace the training images with your own set of images in the folder `Training images`.
-4. Open the `app.py` file and change the file paths as per your system.
-5. Run the `app.py` file.
+This guide will help you deploy the application on Render.com's free tier.
 
-### Technologies Used
-- **Programming Languages:** Python
-- **Libraries:** OpenCV, dlib, face-recognition
-- **Database:** SQLite
-- **Web Application:** Flask, HTML, CSS, JavaScript
-- **Data Visualization:** Power BI
+### Prerequisites
 
-### Methodology
-- **Environment Setup:** Created a conda environment and installed necessary dependencies including OpenCV, dlib, face-recognition, and Flask.
-- **Face Detection:** Converted images to black and white, then used HOG to detect faces by comparing image gradients.
-- **Face Embedding:** Used 128-dimensional vectors and the triplet loss function for distinguishing between faces.
-- **Face Recognition:** Utilized Euclidean distance with a threshold of 0.5 to compare the generated face encodings with the actual encodings of the training images to recognize the faces.
-- **Database Connection:** Stored attendance data in a SQLite database and exported it to CSV for Power BI integration.
-- **Web Application:** Developed a Flask-based web app for real-time attendance capturing and management.
-- **Power BI Dashboard:** Connected the attendance data to Power BI to create dashboards. Embedded Power BI reports into the web app for real-time insights.
+1. A [Render.com](https://render.com) account
+2. Your project code in a Git repository (GitHub, GitLab, etc.)
 
+### Step 1: Prepare Your Repository
 
-### User Interface Demo
-- Fig.1: Home page of FRAMS
-  
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/b5f28977-3781-4091-bd69-e2bdd392a548)
+Make sure your repository includes all the necessary files:
+- app.py
+- database.py
+- requirements.txt
+- Procfile
+- render.yaml
+- Training images folder with sample images
 
-- Fig.2: Attendance Punching using FRAMS
-  
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/2ef80327-c75e-4c5e-810d-b5b6387b6dd2)
+### Step 2: Create a New Web Service on Render
 
-- Fig.3: Face is detected in low light conditions
+1. Log in to your Render.com account
+2. Click on "New +" and select "Blueprint"
+3. Connect your Git repository
+4. Render will automatically detect the render.yaml file and configure your services
 
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/3578757a-a775-4f43-9d99-48e085af486c)
+### Step 3: Configure Environment Variables
 
-- Fig.4: Face is detected from different angles
+The render.yaml file already includes the necessary environment variables, but you can add more if needed:
 
-  <img src = "https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/60365317-d9ea-467a-95b5-b213818739ae" width="700" height="500">
+- `FLASK_ENV`: Set to "production" for production deployment
+- `DATABASE_URL`: This will be automatically set by Render based on your database configuration
 
-- Fig.5: Administrator Login Page
+### Step 4: Deploy Your Application
 
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/9c60132b-0b56-4a1b-8cea-b7b87b43ea28)
+1. Click "Apply" to create the services defined in your render.yaml file
+2. Render will automatically build and deploy your application
+3. Once deployment is complete, you can access your application at the provided URL
 
-- Fig.6: Page showing the current day’s attendance
+### Important Considerations for Free Tier
 
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/b93b3afb-113d-406f-ad62-062b0fbaeb0e)
+1. **Service Spin-down**: Render's free tier web services spin down after 15 minutes of inactivity. The first request after inactivity will take some time to respond while the service spins up.
 
+2. **Database Expiration**: Free PostgreSQL databases on Render expire after 90 days. Make sure to back up your data before this period ends.
 
+3. **Usage Limits**: Free tier includes 750 hours of service per month. If you exceed this limit, your service will be suspended until the next month.
 
-- Fig.7: Attendance Dashboard in Power BI
+4. **Service-Initiated Traffic**: Render may suspend services that initiate an uncommonly high volume of traffic. To avoid this:
+   - Minimize external API calls
+   - Avoid continuous background processes
+   - Implement proper caching strategies
 
-  ![image](https://github.com/amlanmohanty1/face-recognition-attendance-management-system-with-PowerBI-dashboard/assets/72063042/532a47ce-fd9b-4b6a-9ef8-effd19b22dc2)
+5. **Memory Optimization**: Face recognition can be memory-intensive. The application has been optimized for lower memory usage by:
+   - Using the HOG model instead of CNN
+   - Reducing image resolution during processing
+   - Implementing caching for face encodings
 
+### Keeping Your Service Active
 
-### License
-This project is licensed under the MIT License. Check out the [LICENSE](LICENSE) file for more details. 
+The application includes a built-in keep-alive mechanism to prevent your service from spinning down due to inactivity. This works by having the application ping itself at regular intervals.
+
+To enable this feature:
+
+1. After deployment, go to your service's environment variables in the Render dashboard
+2. Set `ENABLE_KEEP_ALIVE` to `true`
+3. Set `APP_URL` to your application's URL (e.g., `https://your-app-name.onrender.com`)
+4. Set `PING_INTERVAL` to `840` (14 minutes in seconds, just under Render's 15-minute inactivity threshold)
+
+Alternatively, you can use external services like [UptimeRobot](https://uptimerobot.com/) to ping your application regularly.
+
+### Memory Optimization for Face Recognition
+
+Face recognition can be memory-intensive. The application has been optimized for lower memory usage by:
+
+- Using the HOG model instead of CNN for face detection
+- Reducing image resolution during processing
+- Implementing caching for face encodings
+- Processing fewer frames during recognition
+
+## Local Development
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the application: `python app.py`
+
+### Usage
+
+1. Access the application at `http://localhost:5000`
+2. Register students using the registration form
+3. Use the recognition feature to mark attendance
+4. View attendance reports and dashboard
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
